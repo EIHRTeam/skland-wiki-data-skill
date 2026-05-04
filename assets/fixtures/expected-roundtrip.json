@@ -1,0 +1,10 @@
+{
+  "fixture": "assets/fixtures/sample-info-root.json",
+  "expectedResult": "PASS",
+  "notes": [
+    "Wiki JSON -> XML -> Wiki JSON round-trip preserves DocumentModel semantic equivalence.",
+    "Internal IDs (widgetCommonMap keys, documentMap keys, block IDs) are regenerated via crypto.getRandomValues.",
+    "Comparison checks structural equivalence: itemId, name, subType count, chapterGroup count, description block count.",
+    "Byte-level identity is NOT expected — the package guarantees DocumentModel equivalence, not byte identity."
+  ]
+}

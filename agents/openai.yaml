@@ -1,0 +1,4 @@
+interface:
+  display_name: "SKLand Wiki Data"
+  short_description: "SKLand Wiki public data formats: JSON, XML, DocumentModel, and @eihrteam/xml conversion"
+  default_prompt: "Use $skland-wiki-data to work with SKLand Wiki item data formats, convert between JSON and XML, or understand the DocumentModel type system."

@@ -1,0 +1,70 @@
+{
+  "skill_name": "skland-wiki-data",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "我有个 wiki 的 JSON 文件 evals/files/sample-info-root.json，是从 item/info 接口拿到的。我想把它转成可读的 XML 格式存到 git 仓库里做版本管理。帮我转一下，输出到 evals/files/output.xml。",
+      "expected_output": "生成一个语义等价的 <sklandDocument> XML 文件，包含 itemId、metainfo、chapters 等必要结构，可被 validate-xml.mjs 验证通过。",
+      "files": ["evals/files/sample-info-root.json"],
+      "expectations": [
+        "输出文件 evals/files/output.xml 存在且是良构的 XML",
+        "根标签为 <sklandDocument>",
+        "包含 <itemId> 和 <metainfo> 子元素",
+        "XML 可通过 scripts/validate-xml.mjs 验证（valid: true）",
+        "使用了 bundled script scripts/convert.mjs 而非重新实现转换逻辑"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "在看一个 <sklandDocument> XML 文件，里面有个 <color value=\"light_rank_green\"> 标签，<entry type=\"card-big\"> 又是什么意思？这些颜色和 entry type 的完整映射表在哪里能看到？我想知道所有可能的颜色值和 entry 类型。",
+      "expected_output": "从 references/02-xml-format-and-cheatsheet.md 查找并列出完整的 20 色映射表和 entry type 映射表，解释 light_rank_green 对应的含义和 card-big 的用途。",
+      "files": [],
+      "expectations": [
+        "列出了至少 20 种颜色的完整映射（颜色名到含义）",
+        "列出了 entry type 的完整枚举值（card-big, link-img, link-txt）",
+        "解释了 light_rank_green 的含义",
+        "解释了 card-big entry type 的用途",
+        "引用了 references/02-xml-format-and-cheatsheet.md 作为来源"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "我改了一个 XML 文件（evals/files/sample.xml），想确认它还能正确转回 JSON。帮我跑一下 round-trip 检查——就是用这个 XML 做 JSON→XML→JSON 的等价性验证。同时也帮我验证一下这个 XML 的结构是否正确。",
+      "expected_output": "运行 roundtrip-check.mjs 验证语义等价性（passed: true），运行 validate-xml.mjs 验证结构正确性（valid: true）。",
+      "files": ["evals/files/sample.xml"],
+      "expectations": [
+        "运行了 scripts/roundtrip-check.mjs 并得到 passed: true",
+        "运行了 scripts/validate-xml.mjs 并得到 valid: true",
+        "正确解释了 round-trip 检查和 XML 验证的区别",
+        "使用了 bundled scripts 而非重新实现"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "我在用 @eihrteam/xml 做 wiki 数据的程序化处理。我需要理解 DocumentModel 这个中间表示的完整类型系统——有哪些 block 类型？哪些 inline 类型？ComplexTableBlock 的结构是什么样的？headerMode 有哪些合法值？另外 normalizeBlocks 这个函数做了什么？",
+      "expected_output": "从 references/03-document-model-ir.md 提取完整的类型信息：6 种 block 类型、4 种 inline 类型、ComplexTableBlock 的字段定义、headerMode 的 4 个合法值、normalizeBlocks 的 6 步规范化流程。",
+      "files": [],
+      "expectations": [
+        "列出了全部 6 种 block 类型（paragraph, quote, list, image, horizontalLine, complexTable）",
+        "列出了全部 4 种 inline 类型（text, pronunciation, link, entry）",
+        "描述了 ComplexTableBlock 的字段结构（headerMode, columnWidths, cells, rowCount, columnCount）",
+        "列出了 headerMode 的 4 个合法值（none, row, col, both）",
+        "描述了 normalizeBlocks 的规范化步骤",
+        "引用了 references/03-document-model-ir.md 作为来源"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "我需要把一批 wiki JSON 数据（大概 200 个 item）转成 XML 存到 git 做版本追踪。但我担心批量转换会不会有数据丢失——wiki JSON 里有些字段在 XML 里没有对应的吧？转换到底 lossy 在哪里？我应该用什么脚本做批量转换？",
+      "expected_output": "说明转换的语义等价保证（DocumentModel 级别）、lossy 的地方（publicMeta 等只读元数据）、推荐使用 scripts/convert.mjs 做批量转换，并结合 references/05-workflows-and-patterns.md 给出批量迁移的工作流建议。",
+      "files": [],
+      "expectations": [
+        "说明了 DocumentModel 语义等价保证（block/inline 内容不丢失）",
+        "指出了 lossy 的部分：publicMeta 等只读元数据在 XML 中不保留",
+        "推荐了 scripts/convert.mjs 或 @eihrteam/xml 的 batch 函数做批量转换",
+        "提到了 XML 相比 JSON 对 git 版本管理的优势（可读、可 diff）",
+        "引用了 references/05-workflows-and-patterns.md 或 references/00-overview.md"
+      ]
+    }
+  ]
+}

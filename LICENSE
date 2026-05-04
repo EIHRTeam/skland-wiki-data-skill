@@ -1,0 +1,24 @@
+1. 本仓库采用双许可证模式，按文件类型分别适用：
+
+    Markdown 文件（*.md，不含许可证文件自身）：
+        适用 EPCL (EIHRTeam Proprietary Content License 1.0)
+        简而言之：您可以出于非商业目的使用和修改以该许可证授权的文件，但不得二次分发或分发修改版本，商业用途须经书面许可。
+        详见 ./LICENSE-EPCL
+
+    其他所有文件（脚本、配置、fixture 等，不含许可证文件自身）：
+        适用 WTFPL (Do What The Fuck You Want To Public License 2.0)。
+        详见 ./LICENSE-WTFPL
+
+    许可证文件自身（LICENSE、LICENSE-EPCL、LICENSE-WTFPL）不属于上述任一许可范围，但任何人均可不受限制地复制许可证文件原文。
+
+
+2. 特别授权
+
+    无论上述许可证的条款如何，上海鹰角网络科技有限公司 (Shanghai Hypergryph Network Technology Co., Ltd.)、Gryph Frontier Pte. Ltd. 及其各自关联实体（即直接或间接控制该实体、受该实体控制或与该实体共同受控于同一主体的法人或其他组织），可以在法律允许的最大限度内，不受上述许可证的制约，自由地、出于任何目的（包括但不限于商业目的），使用、修改或分发本仓库内的所有文件。
+
+    本条款构成对上述实体依据 EPCL 第 4 条所颁发的书面特别授权。
+
+
+3. 尾注
+
+    如本授权文本中对许可证内容的简介与实际许可证内容不符，请以实际许可证文本为准。

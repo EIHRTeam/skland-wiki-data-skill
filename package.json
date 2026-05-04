@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@eihrteam/xml": "^0.3.3"
+  }
+}
